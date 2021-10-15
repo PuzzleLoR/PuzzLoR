@@ -1,19 +1,13 @@
 import React from 'react';
-import Cats from './Cats.jsx';
+import CardList from './CardList.jsx';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
-  render() {
-    return (
-      <div>
-        <h1>App.js is connected and working!</h1>
-        <Cats />
-      </div>
-    )
-  }
+const App = () => {
+  return (
+    <div>
+      <h1>App.js is connected and working!</h1>
+      <CardList />
+    </div>
+  )
 }
 
 export default App;
