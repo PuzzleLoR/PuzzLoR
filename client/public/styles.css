@@ -5,6 +5,10 @@
   overflow: scroll;
 }
 
+ul.cards{
+  width:100vw;
+  height:100vh;
+}
 ul.cards > li {
   display: flex;
   align-items: center;
