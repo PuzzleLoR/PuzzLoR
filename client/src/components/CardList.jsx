@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import cards from '../cards.js';
 import PreviewCard from './PreviewCard.jsx';
+import RegionFilterIcon from './RegionFilterIcon.jsx';
 //pull request example
 var CardList = () => {
   const [preview, setPreview] = useState('');
-  const [region, setRegion] = useState([]);
-  const allRegions = ["all", "bandlecity", "bilgewater", "demacia", "freljord", "ionia", "noxus", "piltoverzaun", "shadowisles", "shurima", "targon"];
+  const [regions, setRegions] = useState([]);
+  const allRegions = ["all", "BandleCity", "Bilgewater", "Demacia", "Freljord", "Ionia", "Noxus", "PiltoverZaun", "ShadowIsles", "Shurima", "Targon"];
 
   const levelCheck = (type, supertype, rarity, name) => {
     if (type === 'Unit' && supertype === 'Champion' && rarity === 'None') {
@@ -17,16 +18,25 @@ var CardList = () => {
   }
 
   // region: [frejlord, noxus]
+  //TODO add remove region capabalities
   const filterCheck = () => {
-    if (region.length > 0) {
+    if (regions.length > 0) {
       var result = [];
-      for (var i = 0; i < region.length; i++) {
-        result.push(cards().filter((filterByRegion) => filterByRegion.regionRef === region[i]));
+      // console.log(regions)
+      for (var i = 0; i < regions.length; i++) {
+        result.push(cards().filter((filterByRegion) => filterByRegion.regionRef === regions[i]));
       }
-      return result;
+      // console.log(result);
+      // console.log("Result");
+      return result.flat();
     } else {
       return cards();
     }
+  }
+
+  const handleRegions = (region) => {
+    // console.log("clicked")
+    setRegions(prevRegions => [...prevRegions, region]);
   }
 
   //use .filter to filter regions
@@ -35,6 +45,7 @@ var CardList = () => {
     <div className='list-preview-container'>
       <ul className="cards">
         {filterCheck().map((card) => {
+          {/* console.log(card + "cards in .map") */}
           return (
             <li key={card.cardCode}
               onMouseOver={() => { setPreview(card.cardCode) }}>
@@ -58,6 +69,12 @@ var CardList = () => {
         )}
       </ul>
       <PreviewCard preview={preview} />
+      <div className = "region-button-container">
+      
+      {allRegions.map((reg) => { return (<RegionFilterIcon regions={reg} handleRegions = {handleRegions}/> )})}
+        
+        
+      </div>
     </div>
   )
 };
