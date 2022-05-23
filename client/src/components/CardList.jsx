@@ -38,14 +38,24 @@ var CardList = () => {
 
 
     //  checks whether clicked region icon has already been clicked, only adds cards to state if clicked region is NOT present in state.
-    //TODO: add remove region capabalities
     
+
+    // console.log(regions)
     if (Object.values(regions).includes(region)){
       console.log("found it");
+
+      setRegions(regions.filter(item => item !== region))
+      console.log(regions)
+
     } else {
       console.log("not found, adding to regions");
       setRegions(prevRegions => [...prevRegions, region]);
+      console.log(regions)
+      
     }
+
+
+    // console.log(regions);
     
   }
 
