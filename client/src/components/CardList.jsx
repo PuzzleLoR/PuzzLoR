@@ -35,8 +35,18 @@ var CardList = () => {
   }
 
   const handleRegions = (region) => {
-    // console.log("clicked")
-    setRegions(prevRegions => [...prevRegions, region]);
+
+
+    //  checks whether clicked region icon has already been clicked, only adds cards to state if clicked region is NOT present in state.
+    //TODO: add remove region capabalities
+    
+    if (Object.values(regions).includes(region)){
+      console.log("found it");
+    } else {
+      console.log("not found, adding to regions");
+      setRegions(prevRegions => [...prevRegions, region]);
+    }
+    
   }
 
   //use .filter to filter regions

@@ -20,7 +20,7 @@ var RegionFiltered = () => {
     }
 
     const region = "all";
-   
+
 
 
 
@@ -46,7 +46,8 @@ var RegionFiltered = () => {
                         <img
                             style = {{width:'5%'}}
                             src={`./regions/icon-${card.regionRef}.png`}
-                            alt="All Regions" />
+                            alt="All Regions" 
+                            />
 
                     </li>
                 )
