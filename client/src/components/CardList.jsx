@@ -18,7 +18,7 @@ var CardList = () => {
   }
 
   // region: [frejlord, noxus]
-  //TODO add remove region capabalities
+  // TODO add remove region capabalities
   const filterCheck = () => {
     if (regions.length > 0) {
       var result = [];
@@ -34,29 +34,13 @@ var CardList = () => {
     }
   }
 
+  //activates on click of regionIconButtons
   const handleRegions = (region) => {
+    //  checks whether clicked region icon has already been clicked, if clicked, button will instead remove region from selection
+    if (regions.includes(region)) setRegions(regions.filter(item => item !== region));
 
-
-    //  checks whether clicked region icon has already been clicked, only adds cards to state if clicked region is NOT present in state.
-    
-
-    // console.log(regions)
-    if (Object.values(regions).includes(region)){
-      console.log("found it");
-
-      setRegions(regions.filter(item => item !== region))
-      console.log(regions)
-
-    } else {
-      console.log("not found, adding to regions");
-      setRegions(prevRegions => [...prevRegions, region]);
-      console.log(regions)
-      
-    }
-
-
-    // console.log(regions);
-    
+    //  checks whether selected regions is at limit(2), 
+    if (regions.length < 2 ) setRegions(prevRegions => [...prevRegions, region]);
   }
 
   //use .filter to filter regions
